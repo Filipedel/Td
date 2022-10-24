@@ -24,25 +24,17 @@ public class main2 {
         Paire<Integer,Double> no = new Paire(250,100.0);
         //Mettre les paires dans une listes
         List<Paire<Integer,Double>> paires= new ArrayList<>(7);
-        paires.add(paire);
-        paires.add(pp);
-        paires.add(pp1);
-        paires.add(pp2);
+
         paires.add(yes);
-        paires.add(no);
-        paires.add(pp3);
+
 
 
 
         //mettre les prédicats dans une liste
         List<Predicate<Paire<Integer,Double>>> predicat = new ArrayList<>(7);
-        predicat.add(troppetit);
-        predicat.add(tropgrand);
-        predicat.add(troplourd);
+
         predicat.add(taillecorrecte);
-        predicat.add(tailleincorrect);
         predicat.add(poidsCorrect);
-        predicat.add(accesAutorise);
 
         //display
         /*
