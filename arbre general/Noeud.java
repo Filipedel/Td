@@ -3,7 +3,7 @@ import java.util.*;
 public class Noeud<U extends Sommable<U>>  implements Arbre<U> {
     private final List<Arbre<U>> newnoeud ;
     public Noeud(List<Arbre<U>> newnoeud){
-        this.newnoeud = newnoeud;
+        this.newnoeud =newnoeud;
     }
     @Override
     public int taille(){
@@ -44,7 +44,8 @@ public class Noeud<U extends Sommable<U>>  implements Arbre<U> {
         if (newnoeud == null||  newnoeud.size() == 0){
             return null;
         }
-         U rtr = newnoeud.get(0).somme();
+        U rtr = newnoeud.get(0).somme();
+        System.out.println(rtr);
         for(Arbre<U> a : newnoeud){
             rtr.sommer(a.somme());
         }
