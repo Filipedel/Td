@@ -90,15 +90,17 @@ public class DAO {
     /**
      * liste des commandes dont au moins une ligne vérifie un prédicat
      */
-    public List<Commande> selectionCommandeSurExistanceLigne(BiPredicate<Commande,Paire<Produit,Integer>> p) {
+    public List<Commande> selectionCommandeSurExistanceLigne(Predicate<Paire<Produit,Integer>> p) {
         return commandes.stream()
             .filter(c -> c.lignes().stream().anyMatch(p))
             .collect(Collectors.toList());
         /*
         List <Commande> commandeList = new Arraylist <>();
         for(Commande c: commandes){
-            if(p.test(c,null)) {
+        for(Paire<Produit,Integer> paire:commande.lignes()){
+            if(p.test(c)) {
                 commandeList.add(c);
+            }
             }
         }
         return commandeList;*/
