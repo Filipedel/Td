@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 import td1.paires.Paire;
 
@@ -23,6 +24,7 @@ public class Commande {
     public List<Paire<Produit, Integer>> lignes() {
         return lignes;
     }
+    private static final Function<Paire<Produit, Integer>, String> formateurLigne = l-> String.format("%s %d",  l.fst(), l.snd());
 
     @Override
     public String toString() {
@@ -67,7 +69,6 @@ public class Commande {
                 .map(l->calculLigne.apply(l))
                 .reduce(0.0,(a,b)->a + b);
     }
-    private static final Function<Paire<Produit, Integer>, String> formateurLigne = l-> String.format("%s %d",  l.fst(), l.snd());
     public String affiche(Function<Paire<Produit, Integer>, Double> calculLigne) {
         Commande c = this.normaliser();
         final String HLINE = "+------------+------------+-----+------------+--------+------------+\n";

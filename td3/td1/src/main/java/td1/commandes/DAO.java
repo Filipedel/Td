@@ -5,6 +5,9 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
+import java.util.function.Function;
+import java.util.Map;
+import java.util.HashMap;
 
 import static td1.commandes.Categorie.*;
 import td1.paires.Paire;
