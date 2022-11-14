@@ -51,11 +51,11 @@ public class DAO {
      * ensemble des différents produits commandés
      */
     public Set<Produit> produits() {
-       /*return commandes.stream()
+       return commandes.stream()
                 .flatMap(c -> c.lignes().stream())
                 .map(Paire::fst)
                 .collect(Collectors.toSet());
-          */
+          /*
         Set<Produit> sp = new HashSet<Produit>() ;
         for(int i = 0 ; i < commandes.size() ; i++) {
             commandes.get(i).lignes().forEach(cl -> {
@@ -64,7 +64,7 @@ public class DAO {
 
         };
         return sp ;
-
+*/
 
     }
 
@@ -78,7 +78,7 @@ public class DAO {
         List <Commande> commandeList = new Arraylist <>();
         for(Commande c: commandes){
             if(p.test(c)){
-            commandeList.push(c);}
+            commandeList.add(c);}
         }
         return commandeList;*/
     }
@@ -94,7 +94,7 @@ public class DAO {
         List <Commande> commandeList = new Arraylist <>();
         for(Commande c: commandes){
             if(p.test(c)) {
-                commandeList.push(c);
+                commandeList.add(c);
             }
         }
         return commandeList;*/
