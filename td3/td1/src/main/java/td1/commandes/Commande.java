@@ -26,12 +26,14 @@ public class Commande {
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder();
+       /* StringBuilder str = new StringBuilder();
         str.append("Commande\n");
         for (Paire<Produit, Integer> ligne : lignes) {
             str.append(String.format("%s x%d\n", ligne.fst(), ligne.snd()));
         }
-        return str.toString();
+        return str.toString();*/
+        return lignes.stream().map(l->formateurLigne.apply(l))
+                .collect(Collectors.joining());
     }
 
     /**
@@ -56,13 +58,16 @@ public class Commande {
     }
 
     public Double cout(Function<Paire<Produit, Integer>, Double> calculLigne) {
-        double rtr = 0;
+        /*double rtr = 0;
         for (Paire<Produit, Integer> l : normaliser().lignes) {
             rtr += calculLigne.apply(l);
         }
-        return rtr;
+        return rtr;*/
+        return lignes.stream()
+                .map(l->calculLigne.apply(l))
+                .reduce(0.0,(a,b)->a + b);
     }
-
+    private static final Function<Paire<Produit, Integer>, String> formateurLigne = l-> String.format("%s %d",  l.fst(), l.snd());
     public String affiche(Function<Paire<Produit, Integer>, Double> calculLigne) {
         Commande c = this.normaliser();
         final String HLINE = "+------------+------------+-----+------------+--------+------------+\n";
@@ -71,6 +76,7 @@ public class Commande {
         str.append(HLINE);
         str.append("+ nom        + prix       + qté + prix ht    + tva    + prix ttc   +\n");
         str.append(HLINE);
+        /*
         for (Paire<Produit, Integer> ligne : c.lignes) {
             str.append(String.format("+ %10s + %10.2f + %3d + %10.2f + %5.2f%% + %10.2f +\n", ligne.fst(), // nom
                     ligne.fst().prix(), // prix unitaire
@@ -78,7 +84,7 @@ public class Commande {
                     ligne.fst().prix() * ligne.snd(), // prix ht
                     ligne.fst().cat().tva() * 100, // tva
                     calculLigne.apply(ligne)));
-        }
+        }*/
         str.append(HLINE);
         str.append(String.format("Total : %10.2f", c.cout(calculLigne)));
         return str.toString();

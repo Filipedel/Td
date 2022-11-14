@@ -51,10 +51,21 @@ public class DAO {
      * ensemble des différents produits commandés
      */
     public Set<Produit> produits() {
-        return commandes.stream()
+       /*return commandes.stream()
                 .flatMap(c -> c.lignes().stream())
                 .map(Paire::fst)
                 .collect(Collectors.toSet());
+          */
+        Set<Produit> sp = new HashSet<Produit>() ;
+        for(int i = 0 ; i < commandes.size() ; i++) {
+            commandes.get(i).lignes().forEach(cl -> {
+                sp.add(cl) ;
+            });
+
+        };
+        return sp ;
+
+
     }
 
     /**
@@ -63,7 +74,13 @@ public class DAO {
     public List<Commande> selectionCommande(Predicate<Commande> p) {
         return commandes.stream()
             .filter(p)
-            .collect(Collectors.toList());
+            .collect(Collectors.toList());/*
+        List <Commande> commandeList = new Arraylist <>();
+        for(Commande c: commandes){
+            if(p.test(c)){
+            commandeList.push(c);}
+        }
+        return commandeList;*/
     }
 
     /**
@@ -73,6 +90,14 @@ public class DAO {
         return commandes.stream()
             .filter(c -> c.lignes().stream().anyMatch(p))
             .collect(Collectors.toList());
+        /*
+        List <Commande> commandeList = new Arraylist <>();
+        for(Commande c: commandes){
+            if(p.test(c)) {
+                commandeList.push(c);
+            }
+        }
+        return commandeList;*/
     }
 
     /**
@@ -83,6 +108,16 @@ public class DAO {
             .stream()
             .filter(p)
             .collect(Collectors.toSet());
+        /*
+          Set<Produit> sp = new HashSet<Produit>() ;
+        for(int i = 0 ; i < produits().size() ; i++) {
+            produits().get(i).lignes().forEach(cl -> {
+                sp.add(cl) ;
+            });
+
+        }
+        return sp ;
+         */
     }
 
 }
